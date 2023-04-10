@@ -14,6 +14,8 @@ namespace Lab_4
 
     public partial class Form1 : Form
     {
+        float rotationAngle = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -77,8 +79,7 @@ namespace Lab_4
         private void SetupCamera()
         {
             // скорость вращения
-            float rotationAngle = 0;
-            float rotationSpeed = 1.5f;
+            float rotationSpeed = 1f;
             GL.LoadIdentity();
 
             // задаем позицию камеры
@@ -102,6 +103,9 @@ namespace Lab_4
 
         private void DrawSurface()
         {
+            rotationAngle += 0.01f;
+
+
             int s_displaylist = 0;
             int s_columns = 50;
             int s_rows = 50;
@@ -137,7 +141,7 @@ namespace Lab_4
                     GL.PolygonMode(MaterialFace.Front, PolygonMode.Fill);
                     GL.PolygonMode(MaterialFace.Back, PolygonMode.Fill);
                     break;
-                case 3:
+                case 0:
                     GL.PolygonMode(MaterialFace.Front, PolygonMode.Point);
                     GL.PolygonMode(MaterialFace.Back, PolygonMode.Point);
                     GL.PointSize(3);
@@ -190,7 +194,14 @@ namespace Lab_4
                 }
                 GL.EndList();
                 GL.CallList(s_displaylist);
+                GL.Flush();
+                AnT.SwapBuffers();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("aaa");
         }
     }
 
