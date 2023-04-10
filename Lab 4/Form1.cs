@@ -211,13 +211,12 @@ namespace Lab_4
         // фyнкция sinc=sin(x)/x
         public double Sinc(double x)
         {
-            return (Math.Abs(x) < 1e-7) ? 1 : Math.Sin(x) / x;
+            return 0.1 * x * x;
         }
         // представление поверхности в виде фyнкции F(x,y,z)=Ff(x,y) -z
         public double F(double x, double y, double z)
         {
-            double r = Math.Sqrt(x * x + y * y);
-            double f = Sinc(r);
+            double f = Sinc(x);
             return f - z;
         }
 
@@ -225,8 +224,7 @@ namespace Lab_4
         {
             Vertex resault = new Vertex();
             // вычисляем значение координаты Z
-            double r = Math.Sqrt(x * x + y * y);
-            double z = Sinc(r);
+            double z = Sinc(x);
 
             // "бесконечно малое" приращение аргyмента
             // для численного дифференцирования
